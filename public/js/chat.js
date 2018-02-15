@@ -47,7 +47,7 @@ socket.on('newLocationMessage', (message) => {
     url: message.url,
     from: message.from,
     createdAt: formattedTime
-  }); 
+  });
   jQuery('#messages').append(html);
   scrollToBottom();
 });
@@ -69,14 +69,10 @@ socket.on('updateUserList', users => {
 jQuery('#message-form').on('submit', function (e) {
   e.preventDefault();
   const messageTextBox = jQuery('[name=message]');
-  let submitButton = jQuery('#submit');
-  submitButton.disabled = true;
   socket.emit('createMessage', {
-    from: 'User',
     text: messageTextBox.val()
   }, () => {
     messageTextBox.val('');
-    submitButton.disabled = false;
   });
 });
 
